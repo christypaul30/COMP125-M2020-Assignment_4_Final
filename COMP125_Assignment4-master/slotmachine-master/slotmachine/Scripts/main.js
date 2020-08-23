@@ -1,9 +1,4 @@
 ﻿let doing = false;
-let spin = [new Audio("res/sounds/spin.mp3"),new Audio("res/sounds/spin.mp3"),new Audio("res/sounds/spin.mp3"),new Audio("res/sounds/spin.mp3"),new Audio("res/sounds/spin.mp3"),new Audio("res/sounds/spin.mp3"),new Audio("res/sounds/spin.mp3")];
-let coin = [new Audio("res/sounds/coin.mp3"),new Audio("res/sounds/coin.mp3"),new Audio("res/sounds/coin.mp3")]
-let win = new Audio("res/sounds/win.mp3");
-let lose = new Audio("res/sounds/lose.mp3");
-let audio = false;
 let status = document.getElementById("status")
 let info = true;
 
@@ -61,11 +56,7 @@ function doSlot(){
 		if (slotTile.className=="a7"){
 			slotTile.className = "a0";
 		}
-		sound++;
-		if (sound==spin.length){
-			sound=0;
-		}
-		spin[sound].play();
+		
 		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
 	}
 }
@@ -91,30 +82,6 @@ function testWin(){
 	doing = false;
 }
 
-function toggleAudio(){
-	if (!audio){
-		audio = !audio;
-		for (let x of spin){
-			x.volume = 0.5;
-		}
-		for (let x of coin){
-			x.volume = 0.5;
-		}
-		win.volume = 1.0;
-		lose.volume = 1.0;
-	}else{
-		audio = !audio;
-		for (let x of spin){
-			x.volume = 0;
-		}
-		for (let x of coin){
-			x.volume = 0;
-		}
-		win.volume = 0;
-		lose.volume = 0;
-	}
-	document.getElementById("audio").src = "res/icons/audio"+(audio?"On":"Off")+".png";
-}
 
 function randomInt(min, max){
 	return Math.floor((Math.random() * (max-min+1)) + min);
